@@ -103,8 +103,8 @@ in
   services.openvpn.servers = {
     nordVPN = {
       config = ''
-        config /home/nakedsnake/Documents/openvpn/us5839.nordvpn.com.udp.ovpn
-        auth-user-pass /home/nakedsnake/Documents/openvpn/nordvpn.cred
+        config /home/nakedsnake/Documents/GitHub/OpenVPN/us5839.nordvpn.com.udp.ovpn
+        auth-user-pass /home/nakedsnake/Documents/GitHub/OpenVPN/nordvpn.cred
       '';
       autoStart = true; # Set to true to start on boot
       updateResolvConf = true; # Update DNS, if needed
