@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
   # Packages you want both system-wide and for your user
@@ -13,7 +13,7 @@ let
     vesktop
     vlc
     orca-slicer
-    signal-desktop
+    pkgs-unstable.signal-desktop # <-- Rolling latest Signal
     openvpn
     warp-terminal
     gh
@@ -24,6 +24,11 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  # Define custom shell shortcut globally
+   programs.bash.shellAliases = {
+    nixos-rebuild = "sudo nixos-rebuild -I nixos-config=/home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
+    };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -77,27 +82,6 @@ in
   # Optional: enable auto power-on at boot
   hardware.bluetooth.powerOnBoot = true;
 
-  # Enable the KDE Bluetooth applet (Bluedevil)
-  # services.blueman.enable = true; # For GTK desktops, not KDE
-  # services.bluedevil.enable = true;
-
-  # Enable sound with PipeWire.
-  # services.pulseaudio.enable = false;
-  # security.rtkit.enable = true;
-  # services.pipewire = {
-   # enable = true;
-   # alsa.enable = true;
-   # alsa.support32Bit = true;
-   # jack.enable = true;
-    # pulse.enable = true;
-   # socketActivation = true;
-    # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    # media-session.enable = true;
-  #};
 
   # Enable OpenVPN
   services.openvpn.servers = {
@@ -110,21 +94,6 @@ in
       updateResolvConf = true; # Update DNS, if needed
     };
   };
-
-  # Extra Bluetooth tuning via PipeWire WirePlumber
- # services.pipewire.wireplumber.extraConfig."10-bluez" = {
-   # "monitor.bluez.properties" = {
-    #  "bluez5.enable-sbc-xq" = true;
-    #  "bluez5.enable-msbc" = true;
-    #  "bluez5.enable-hw-volume" = true;
-    #  "bluez5.roles" = [
-    #    "hsp_hs"
-    #    "hsp_ag"
-    #    "hfp_hf"
-    #    "hfp_ag"
-     # ];
-    #};
-  #};
 
   # Enable touchpad support (enabled by default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -175,6 +144,7 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
