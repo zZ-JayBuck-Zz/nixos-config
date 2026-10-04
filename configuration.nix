@@ -27,14 +27,26 @@ in
 
   # Define custom shell shortcut globally
    programs.bash.shellAliases = {
-    nixos-rebuild = "sudo nixos-rebuild --flakeI nixos-config=/home/nakedsnake/Documents/GitHub/nixos-config/#nixos";
+    nixos-rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config/#nixos";
     nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
     editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
     editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
     };
 
+  # Automated System Optimization and Cleanups
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-old";
+      };
+    };
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
