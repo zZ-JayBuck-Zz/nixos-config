@@ -32,7 +32,12 @@ in
     editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
     editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
     nixclean = "sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
+    nixhistory = "nix profile history --profile /nix/var/nix/profiles/system";
+
+  # Add this line to unlock modern nix commands everywhere!
+  nix = "nix --extra-experimental-features 'nix-command flakes'";
     };
+
 
   # Automated System Optimization and Cleanups
   nix = {
