@@ -27,7 +27,10 @@ in
 
   # Define custom shell shortcut globally
    programs.bash.shellAliases = {
-    nixos-rebuild = "sudo nixos-rebuild -I nixos-config=/home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
+    nixos-rebuild = "sudo nixos-rebuild --flakeI nixos-config=/home/nakedsnake/Documents/GitHub/nixos-config/#nixos";
+    nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
+    editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
+    editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
     };
 
   # Bootloader.
