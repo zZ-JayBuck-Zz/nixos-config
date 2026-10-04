@@ -31,6 +31,7 @@ in
     nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
     editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
     editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
+    nixclean = "sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
     };
 
   # Automated System Optimization and Cleanups
