@@ -4,9 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Add SnOrca Flake
+    snapmaker-orca.url = "github:chrstnwhlrt/nix-snapmaker-orca";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, snapmaker-orca, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs-unstable = import nixpkgs-unstable {
@@ -17,8 +19,8 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit pkgs-unstable snapmaker-orca; };
           modules = [ ./configuration.nix ];
-          specialArgs = { inherit pkgs-unstable; };
         };
       };
     };

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, snapmaker-orca, ... }:
 
 let
   # Packages you want both system-wide and for your user
@@ -10,19 +10,22 @@ let
     git
     github-desktop
     libsecret
-    vesktop
+    pkgs-unstable.vesktop #Rolling latest
     vlc
-    orca-slicer
     pkgs-unstable.signal-desktop # <-- Rolling latest Signal
     openvpn
     warp-terminal
     gh
+    fastfetch
+
   ];
 in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    #Import SnOrca Module
+    snapmaker-orca.nixosModules.default
   ];
 
   # Define custom shell shortcut globally
@@ -34,10 +37,19 @@ in
     nixclean = "sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
     nixhistory = "nix profile history --profile /nix/var/nix/profiles/system";
 
+
   # Add this line to unlock modern nix commands everywhere!
   nix = "nix --extra-experimental-features 'nix-command flakes'";
     };
 
+  # Automatically fire hardware specs in terminal start
+  programs.bash.interactiveShellInit = "fastfetch";
+
+  # Enable Native Translation for standalone Linux Apps ex SnOrca
+  programs.nix-ld.enable = true;
+
+  # Install native SnOrca Flake
+  programs.snapmaker-orca.enable = true;
 
   # Automated System Optimization and Cleanups
   nix = {
