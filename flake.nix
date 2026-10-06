@@ -2,7 +2,7 @@
   description = "NakedSnake's Auto-Updating Stable System Config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Add SnOrca Flake
     snapmaker-orca.url = "github:chrstnwhlrt/nix-snapmaker-orca";
