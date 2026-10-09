@@ -30,7 +30,7 @@ in
 
   # Define custom shell shortcut globally
    programs.bash.shellAliases = {
-    nixos-rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config/#nixos";
+    nixos-rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config/#nixos-nitro5";
     nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
     editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
     editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
@@ -67,7 +67,7 @@ in
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-nitro5"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
