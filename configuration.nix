@@ -30,16 +30,12 @@ in
 
   # Define custom shell shortcut globally
    programs.bash.shellAliases = {
-    nixos-rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config/#nixos-nitro5";
+    rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config";
     nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
     editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
     editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
-    nixclean = "sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
+    nixclean = "sudo nix-env ---delete-generations 14d --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
     nixhistory = "nix profile history --profile /nix/var/nix/profiles/system";
-
-
-  # Add this line to unlock modern nix commands everywhere!
-  nix = "nix --extra-experimental-features 'nix-command flakes'";
     };
 
   # Automatically fire hardware specs in terminal start
@@ -53,11 +49,14 @@ in
 
   # Automated System Optimization and Cleanups
   nix = {
-    settings.auto-optimise-store = true;
+    settings = {
+    experimental-features = [ "nix-command" "flakes"];
+    auto-optimise-store = true;
+    };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-old";
+      options = "--delete-older-than 14d";
       };
     };
 
@@ -134,7 +133,7 @@ in
     nordVPN = {
       config = ''
         config /home/nakedsnake/Documents/GitHub/OpenVPN/us5839.nordvpn.com.udp.ovpn
-        auth-user-pass /home/nakedsnake/Documents/GitHub/OpenVPN/nordvpn.cred
+        auth-user-pass /etc/openvpn/nordvpn.cred
       '';
       autoStart = true; # Set to true to start on boot
       updateResolvConf = true; # Update DNS, if needed
@@ -165,8 +164,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable the Flakes feature and the accompanying new nix command-line tool
-  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

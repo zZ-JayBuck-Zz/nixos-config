@@ -16,12 +16,10 @@
         config.allowUnfree = true;
       };
     in {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos-nitro5 = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit pkgs-unstable snapmaker-orca; };
           modules = [ ./configuration.nix ];
-        };
       };
     };
 }
