@@ -36,6 +36,11 @@ in
     editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
     nixclean = "sudo nix-env ---delete-generations 14d --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
     nixhistory = "nix profile history --profile /nix/var/nix/profiles/system";
+    vpnon = "sudo systemctl start openvpn-nordVPN.service";
+    vpnoff = "sudo systemctl stop openvpn-nordVPN.service";
+    vpnrestart = "sudo systemctl restart openvpn-nordVPN.service";
+    vpnstatus = "systemctl status openvpn-nordVPN.service";
+    myip = "curl ifconfig.me";
     };
 
   # Automatically fire hardware specs in terminal start
