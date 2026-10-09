@@ -77,6 +77,19 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable Local Networ Service Discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+    enable = true;
+    addresses = true;
+    };
+  };
+
+  # Open mDNS port on Firewall
+  networking.firewall.allowedUDPPorts = [ 5353 ];
+
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
