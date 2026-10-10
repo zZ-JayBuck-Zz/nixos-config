@@ -140,7 +140,6 @@ in
     isNormalUser = true;
     description = "NakedSnake";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = commonPackages;
   };
 
   # Install Steam
