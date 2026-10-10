@@ -132,19 +132,6 @@ in
   # Optional: enable auto power-on at boot
   hardware.bluetooth.powerOnBoot = true;
 
-
-  # Enable OpenVPN
-  services.openvpn.servers = {
-    nordVPN = {
-      config = ''
-        config /home/nakedsnake/Documents/GitHub/OpenVPN/us5839.nordvpn.com.udp.ovpn
-        auth-user-pass /etc/openvpn/nordvpn.cred
-      '';
-      autoStart = true; # Set to true to start on boot
-      updateResolvConf = true; # Update DNS, if needed
-    };
-  };
-
   # Enable touchpad support (enabled by default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
