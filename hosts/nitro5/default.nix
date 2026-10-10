@@ -33,7 +33,7 @@ in
     rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config";
     nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
     editnixconfig = "kate /home/nakedsnake/Documents/GitHub/nixos-config/configuration.nix";
-    editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
+    editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/hosts/nitro5/default.nix";
     nixclean = "sudo nix-env ---delete-generations 14d --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
     nixhistory = "nix profile history --profile /nix/var/nix/profiles/system";
     vpnon = "sudo systemctl start openvpn-nordVPN.service";

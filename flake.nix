@@ -19,7 +19,7 @@
       nixosConfigurations.nixos-nitro5 = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit pkgs-unstable snapmaker-orca; };
-          modules = [ ./configuration.nix ];
+          modules = [ ./hosts/nitro5 ];
       };
     };
 }
