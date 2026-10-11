@@ -21,6 +21,7 @@
           specialArgs = { inherit pkgs-unstable snapmaker-orca; };
           modules = [
             ./hosts/nitro5
+            ./modules/common.nix
             ./modules/vpn.nix
           ];
       };
