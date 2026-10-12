@@ -4,22 +4,6 @@
 
 { config, pkgs, pkgs-unstable, snapmaker-orca, ... }:
 
-let
-  # Packages you want both system-wide and for your user
-  commonPackages = with pkgs; [
-    git
-    github-desktop
-    libsecret
-    pkgs-unstable.vesktop #Rolling latest
-    vlc
-    pkgs-unstable.signal-desktop # <-- Rolling latest Signal
-    openvpn
-    warp-terminal
-    gh
-    fastfetch
-
-  ];
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -58,33 +42,7 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Enable Local Networ Service Discovery
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    publish = {
-    enable = true;
-    addresses = true;
-    };
-  };
 
-  # Open mDNS port on Firewall
-  networking.firewall.allowedUDPPorts = [ 5353 ];
-
-
-  # Enable X11 + KDE Plasma 6
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable Bluetooth service
   hardware.bluetooth.enable = true;
@@ -98,21 +56,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nakedsnake.extraGroups = [ "networkmanager" ];
 
-  # Install Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
 
-  # Install Firefox.
-  programs.firefox.enable = true;
-
-
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = commonPackages;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
