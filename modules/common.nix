@@ -33,4 +33,26 @@ i18n.extraLocaleSettings = {
 # Allow unfree packages (Steam, Signal)
 nixpkgs.config.allowUnfree = true;
 
+# Your User, identical on every machine
+users.users.nakedsnake = {
+    isNormalUser = true;
+    description = "NakedSnake";
+    extraGroups = [ "wheel" ];
+    };
+
+# Aliases shared by every machine
+  programs.bash.shellAliases = {
+    rebuild = "sudo nixos-rebuild --flake /home/nakedsnake/Documents/GitHub/nixos-config";
+    nixhomedir = "cd /home/nakedsnake/Documents/GitHub/nixos-config";
+    editnixflake = "kate /home/nakedsnake/Documents/GitHub/nixos-config/flake.nix";
+    nixhistory = "nix profile history --profile /nix/var/nix/profiles/system";
+    nixclean = "sudo nix-env --delete-generations 14d --profile /nix/var/nix/profiles/system && sudo nix-store --gc && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot";
+    nixcheck = "find /home/nakedsnake/Documents/GitHub/nixos-config -name '*.nix' -exec nix-instantiate --parse {} + > /dev/null && echo 'Syntax OK'";
+    vpnon = "sudo systemctl start openvpn-nordVPN.service";
+    vpnoff = "sudo systemctl stop openvpn-nordVPN.service";
+    vpnrestart = "sudo systemctl restart openvpn-nordVPN.service";
+    vpnstatus = "systemctl status openvpn-nordVPN.service";
+    myip = "curl ifconfig.me";
+    };
+
 }
