@@ -5,9 +5,9 @@ let
         git
         github-desktop
         libsecret
-        pksg-unstable.vestop
+        pkgs-unstable.vesktop
         vlc
-        pks-unstable.signal-desktop
+        pkgs-unstable.signal-desktop
         openvpn
         warp-terminal
         gh

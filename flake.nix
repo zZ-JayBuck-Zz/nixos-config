@@ -22,6 +22,7 @@
           modules = [
             ./hosts/nitro5
             ./modules/common.nix
+            ./modules/desktop.nix
             ./modules/vpn.nix
           ];
       };
