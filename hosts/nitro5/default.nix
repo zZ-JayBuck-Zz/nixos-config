@@ -32,8 +32,6 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
-    # Work around SATA link errors on the ORICO system SSD (ata1)
-  boot.kernelParams = [ "libata.force=1.00:noncq" ];
 
   networking.hostName = "nixos-nitro5"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
